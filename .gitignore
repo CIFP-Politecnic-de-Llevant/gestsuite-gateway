@@ -33,3 +33,5 @@ build/
 .vscode/
 /src/main/resources/application.properties
 /src/main/resources/bootstrap.properties
+/.mvn/wrapper/maven-wrapper.jar
+/.mvn/wrapper/maven-wrapper.properties
