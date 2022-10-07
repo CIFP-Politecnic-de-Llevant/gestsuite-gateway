@@ -48,7 +48,7 @@ public class SpringSecurityConfig {
                 .pathMatchers("/api/core/public/**").permitAll()
                 .pathMatchers("/api/core/external/gsuite/sendemailattachment").permitAll()
                 .pathMatchers("/api/convalidacions/public/**").permitAll()
-                .pathMatchers("/api/webiesmanacordepartaments/public/**").permitAll()
+                .pathMatchers("/api/webiesmanacor/public/**").permitAll()
 
                 //Administrador
                 .pathMatchers("/api/core/administrator/**").hasAnyAuthority(RolDto.ADMINISTRADOR.name())
@@ -91,7 +91,7 @@ public class SpringSecurityConfig {
                 .pathMatchers("/api/convalidacions/**").hasAnyAuthority(RolDto.ADMINISTRADOR.name(), RolDto.DIRECTOR.name(), RolDto.CAP_ESTUDIS.name())
 
                 //Mòdul web IES Manacor Departaments
-                .pathMatchers("/api/webiesmanacordepartaments/**").hasAnyAuthority(RolDto.ADMINISTRADOR.name(), RolDto.DIRECTOR.name(), RolDto.CAP_ESTUDIS.name())
+                .pathMatchers("/api/webiesmanacor/**").hasAnyAuthority(RolDto.ADMINISTRADOR.name(), RolDto.DIRECTOR.name(), RolDto.CAP_ESTUDIS.name())
 
                 .anyExchange().authenticated()
                 .and()
