@@ -38,6 +38,7 @@ public class SpringSecurityConfig {
     public SecurityWebFilterChain configure(ServerHttpSecurity http) {
         List<String> allRols = Arrays.stream(RolDto.values()).map(r -> r.name()).collect(Collectors.toList());
         return http
+                //.authenticationManager(authenticationManagerJwt)
                 .authorizeExchange()
                 //General
                 .pathMatchers("**/error").hasAnyAuthority(allRols.toArray(new String[0]))

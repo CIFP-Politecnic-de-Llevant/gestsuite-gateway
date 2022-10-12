@@ -1,7 +1,9 @@
 package cat.iesmanacor.gateway.security;
 
+import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.ExpiredJwtException;
 import io.jsonwebtoken.Jwts;
+import io.jsonwebtoken.impl.DefaultClaims;
 import io.jsonwebtoken.security.Keys;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.authentication.ReactiveAuthenticationManager;
@@ -13,10 +15,7 @@ import org.springframework.stereotype.Component;
 import reactor.core.publisher.Mono;
 
 import javax.crypto.SecretKey;
-import java.util.ArrayList;
-import java.util.Base64;
-import java.util.Collection;
-import java.util.List;
+import java.util.*;
 import java.util.stream.Collectors;
 
 @Component
@@ -28,14 +27,15 @@ public class AuthenticationManagerJwt implements ReactiveAuthenticationManager {
     @Override
     public Mono<Authentication> authenticate(Authentication authentication) {
         return Mono.just(authentication.getCredentials().toString())
-                .mapNotNull(token -> {
+                .map(token -> {
                     try {
-                        String tokenParsed = token.replace("Bearer ","");
-                        //SecretKey key = Keys.hmacShaKeyFor(Base64.getEncoder().encode(secretJwt.getBytes()));
                         SecretKey key = Keys.hmacShaKeyFor(secretJwt.getBytes());
-                        return Jwts.parserBuilder().setSigningKey(key).build().parseClaimsJws(tokenParsed).getBody();
+                        return Jwts.parserBuilder().setSigningKey(key).build().parseClaimsJws(token).getBody();
                     } catch (Exception e){
-                        return null;
+                        Map<String, Object> claimParams = new HashMap<>();
+                        claimParams.put("email", "");
+                        claimParams.put("rols", new ArrayList<>());
+                        return new DefaultClaims(claimParams);
                     }
                 })
                 .map(claims -> {

@@ -20,9 +20,9 @@ public class JwtAuthenticationFilter implements WebFilter {
     @Override
     public Mono<Void> filter(ServerWebExchange exchange, WebFilterChain chain) {
         return Mono.justOrEmpty(exchange.getRequest().getHeaders().getFirst(HttpHeaders.AUTHORIZATION))
-                .filter(authHeader-> authHeader.startsWith("Bearer "))
+                .filter(authHeader-> authHeader.startsWith("Bearer ") || authHeader.startsWith("Bearer iesmanacor"))
                 .switchIfEmpty(chain.filter(exchange).then(Mono.empty()))
-                .map(token -> token.replace("Bearer ",""))
+                .map(token -> token.replace("Bearer ","").replace("iesmanacor",""))
                 .flatMap(token -> authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(null,token)))
                 .flatMap(authentication -> {
                     if(authentication==null){
