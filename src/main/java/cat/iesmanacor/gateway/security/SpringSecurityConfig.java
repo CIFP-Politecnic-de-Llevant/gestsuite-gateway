@@ -92,7 +92,7 @@ public class SpringSecurityConfig {
                 .pathMatchers("/api/convalidacions/**").hasAnyAuthority(RolDto.ADMINISTRADOR.name(), RolDto.DIRECTOR.name(), RolDto.CAP_ESTUDIS.name())
 
                 //Mòdul web IES Manacor Departaments
-                .pathMatchers("/api/webiesmanacor/**").hasAnyAuthority(RolDto.ADMINISTRADOR.name(), RolDto.DIRECTOR.name(), RolDto.CAP_ESTUDIS.name())
+                .pathMatchers("/api/webiesmanacor/**").hasAnyAuthority(RolDto.ADMINISTRADOR.name(), RolDto.DIRECTOR.name(), RolDto.CAP_ESTUDIS.name(), RolDto.WEB.name())
 
                 .anyExchange().authenticated()
                 .and()
