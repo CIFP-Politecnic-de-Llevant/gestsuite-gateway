@@ -44,6 +44,13 @@ public class SpringSecurityConfig {
                 .pathMatchers("**/error").hasAnyAuthority(allRols.toArray(new String[0]))
 
                 //Públic
+
+                //Actuator
+                .pathMatchers("/actuator/health").permitAll()
+                .pathMatchers("/api/core/actuator/health").permitAll()
+                .pathMatchers("/api/webiesmanacor/actuator/health").permitAll()
+
+                //Auth
                 .pathMatchers("/api/core/auth/google/login").permitAll()
                 .pathMatchers("/api/core/auth/profile/rol").permitAll()
                 .pathMatchers("/api/core/public/**").permitAll()
