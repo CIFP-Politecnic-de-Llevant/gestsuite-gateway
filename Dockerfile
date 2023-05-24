@@ -1,14 +1,21 @@
-FROM maven:3-amazoncorretto-11 as develop-stage-gateway
-COPY . .
+FROM maven:3-amazoncorretto-17 as develop-stage-gateway
+WORKDIR /resources
 
+COPY /api/gestsuite-gateway .
 RUN mvn clean package -f pom.xml
 ENTRYPOINT ["mvn","spring-boot:run","-f","pom.xml"]
 
-FROM maven:3-amazoncorretto-11 as build-stage-gateway
+FROM maven:3-amazoncorretto-17 as build-stage-gateway
 WORKDIR /resources
-COPY . .
-RUN mvn clean compile install package -f pom.xml
 
-FROM amazoncorretto:11-alpine-jdk as production-stage-gateway
+COPY /api/gestsuite-common/ /external/
+RUN mvn clean compile install -f /external/pom.xml
+
+
+COPY /api/gestsuite-gateway .
+RUN mvn clean package -f pom.xml
+
+FROM amazoncorretto:17-alpine-jdk as production-stage-gateway
 COPY --from=build-stage-gateway /resources/target/gateway-0.0.1-SNAPSHOT.jar gateway.jar
+COPY /config/iesmanacor-e0d4f26d9c2c.json /resources/iesmanacor-e0d4f26d9c2c.json
 ENTRYPOINT ["java","-jar","/gateway.jar"]
