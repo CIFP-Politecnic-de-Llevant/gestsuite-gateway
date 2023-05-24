@@ -8,10 +8,6 @@ ENTRYPOINT ["mvn","spring-boot:run","-f","pom.xml"]
 FROM maven:3-amazoncorretto-17 as build-stage-gateway
 WORKDIR /resources
 
-COPY /api/gestsuite-common/ /external/
-RUN mvn clean compile install -f /external/pom.xml
-
-
 COPY /api/gestsuite-gateway .
 RUN mvn clean package -f pom.xml
 
