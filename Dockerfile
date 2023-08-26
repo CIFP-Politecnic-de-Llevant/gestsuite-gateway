@@ -13,5 +13,5 @@ RUN mvn clean package -f pom.xml
 
 FROM amazoncorretto:17-alpine-jdk as production-stage-gateway
 COPY --from=build-stage-gateway /resources/target/gateway-0.0.1-SNAPSHOT.jar gateway.jar
-COPY /config/iesmanacor-e0d4f26d9c2c.json /resources/iesmanacor-e0d4f26d9c2c.json
+COPY /config/ /resources/
 ENTRYPOINT ["java","-jar","/gateway.jar"]
