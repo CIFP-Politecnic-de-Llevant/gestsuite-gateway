@@ -1,4 +1,4 @@
-package cat.iesmanacor.gateway.security;
+package cat.politecnicllevant.gateway.security;
 
 import org.apache.http.HttpHeaders;
 import org.springframework.beans.factory.annotation.Autowired;
