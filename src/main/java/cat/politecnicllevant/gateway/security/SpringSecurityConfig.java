@@ -46,7 +46,7 @@ public class SpringSecurityConfig {
                 .pathMatchers("/api/core/actuator/health").permitAll()
                 .pathMatchers("/api/professoratmanager/actuator/health").permitAll()
 
-                //Auth
+                //Core - Auth
                 .pathMatchers("/api/core/auth/google/login").permitAll()
                 .pathMatchers("/api/core/auth/profile/rol").permitAll()
                 .pathMatchers("/api/core/public/**").permitAll()
@@ -54,20 +54,20 @@ public class SpringSecurityConfig {
                 .pathMatchers("/api/convalidacions/public/**").permitAll()
                 .pathMatchers("/api/professoratmanager/public/**").permitAll()
 
-                //Administrador
+                //Core - Administrador
                 .pathMatchers("/api/core/administrator/**").hasAnyAuthority(RolDto.ADMINISTRADOR.name())
 
-                //Centre
+                //Core - Centre
                 .pathMatchers("/api/core/centre/**").hasAnyAuthority(RolDto.ADMINISTRADOR.name(), RolDto.DIRECTOR.name())
                 //.pathMatchers("/api/core/centre/password-inicial").hasAnyAuthority(allRols.toArray(new String[0]))
 
-                //Calendari
+                //Core - Calendari
                 .pathMatchers("/api/core/calendari/llistat").hasAnyAuthority(RolDto.ADMINISTRADOR.name(), RolDto.DIRECTOR.name())
 
-                //Grups de correu
+                //Core - Grups de correu
                 .pathMatchers("/api/core/grupcorreu/**").hasAnyAuthority(RolDto.ADMINISTRADOR.name(), RolDto.DIRECTOR.name(), RolDto.CAP_ESTUDIS.name())
 
-                //Sincronització
+                //Core - Sincronització
                 .pathMatchers("/api/core/sync/reassignarGrups",
                         "/api/core/sync/reassignarGrupsProfessors",
                         "/api/core/sync/reassignarGrupsAlumnes",
@@ -75,27 +75,31 @@ public class SpringSecurityConfig {
                 .pathMatchers("/api/core/sync/sincronitza").hasAnyAuthority(RolDto.ADMINISTRADOR.name())
                 .pathMatchers("/api/core/sync/uploadfile").hasAnyAuthority(RolDto.ADMINISTRADOR.name(), RolDto.DIRECTOR.name())
 
-                //Usuaris
+                //Core - Usuaris
                 .pathMatchers("/api/core/usuaris/**").hasAnyAuthority(RolDto.ADMINISTRADOR.name(), RolDto.DIRECTOR.name(), RolDto.CAP_ESTUDIS.name())
                 .pathMatchers("/api/core/usuari/**").hasAnyAuthority(RolDto.ADMINISTRADOR.name(), RolDto.DIRECTOR.name(), RolDto.CAP_ESTUDIS.name())
 
-                //Curs
+                //Core - Curs
                 .pathMatchers("/api/core/curs/**").hasAnyAuthority(RolDto.ADMINISTRADOR.name(), RolDto.DIRECTOR.name(), RolDto.CAP_ESTUDIS.name())
 
-                //Grups
+                //Core - Grups
                 .pathMatchers("/api/core/grup/**").hasAnyAuthority(RolDto.ADMINISTRADOR.name(), RolDto.DIRECTOR.name(), RolDto.CAP_ESTUDIS.name())
 
-                //Departament
+                //Core - Departament
                 .pathMatchers("/api/core/departament/**").hasAnyAuthority(RolDto.ADMINISTRADOR.name(), RolDto.DIRECTOR.name(), RolDto.CAP_ESTUDIS.name())
 
-                //Llistats
+                //Core - Llistats
                 .pathMatchers("/api/core/google/sheets/**").hasAnyAuthority(RolDto.ADMINISTRADOR.name(), RolDto.DIRECTOR.name(), RolDto.CAP_ESTUDIS.name())
 
-                //Mòdul convalidacions
+                //Convalidacions - All
                 .pathMatchers("/api/convalidacions/**").hasAnyAuthority(RolDto.ADMINISTRADOR.name(), RolDto.DIRECTOR.name(), RolDto.CAP_ESTUDIS.name())
 
-                //Mòdul web IES Manacor Departaments
+                //Professorat Manager - All
                 .pathMatchers("/api/professoratmanager/**").hasAnyAuthority(RolDto.ADMINISTRADOR.name(), RolDto.DIRECTOR.name(), RolDto.CAP_ESTUDIS.name(), RolDto.WEB.name())
+
+                //Reserves - All
+                .pathMatchers("/api/reserves/**").hasAnyAuthority(RolDto.PROFESSOR.name(), RolDto.ADMINISTRADOR.name())
+
 
                 .anyExchange().authenticated()
                 .and()
