@@ -20,8 +20,8 @@ import java.util.stream.Collectors;
 //@EnableReactiveMethodSecurity
 public class SpringSecurityConfig {
 
-    @Autowired
-    private AuthenticationManagerJwt authenticationManagerJwt;
+    //@Autowired
+    //private AuthenticationManagerJwt authenticationManagerJwt;
 
     @Autowired
     private JwtAuthenticationFilter authenticationFilter;
