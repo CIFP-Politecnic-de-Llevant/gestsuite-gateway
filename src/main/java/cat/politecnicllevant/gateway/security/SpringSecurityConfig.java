@@ -100,6 +100,9 @@ public class SpringSecurityConfig {
                 //Reserves - All
                 .pathMatchers("/api/reserves/**").hasAnyAuthority(RolDto.PROFESSOR.name(), RolDto.ADMINISTRADOR.name())
 
+                //Sheet Perser - All
+                .pathMatchers("/api/sheetparser/**").hasAnyAuthority(RolDto.PROFESSOR.name(), RolDto.ADMINISTRADOR.name())
+
 
                 .anyExchange().authenticated()
                 .and()
