@@ -103,6 +103,9 @@ public class SpringSecurityConfig {
                 //Sheet Perser - All
                 .pathMatchers("/api/sheetparser/**").hasAnyAuthority(RolDto.PROFESSOR.name(), RolDto.ADMINISTRADOR.name())
 
+                //Gestor Documental
+                .pathMatchers("/api/gestordocumental/**").permitAll()
+
 
                 .anyExchange().authenticated()
                 .and()
