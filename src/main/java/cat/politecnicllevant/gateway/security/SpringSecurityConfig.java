@@ -104,7 +104,7 @@ public class SpringSecurityConfig {
                 .pathMatchers("/api/sheetparser/**").hasAnyAuthority(RolDto.PROFESSOR.name(), RolDto.ADMINISTRADOR.name())
 
                 //Gestor Documental
-                .pathMatchers("/api/gestordocumental/**").permitAll()
+                .pathMatchers("/api/gestordocumental/**").hasAnyAuthority(RolDto.PROFESSOR.name(), RolDto.ADMINISTRADOR.name())
 
 
                 .anyExchange().authenticated()
