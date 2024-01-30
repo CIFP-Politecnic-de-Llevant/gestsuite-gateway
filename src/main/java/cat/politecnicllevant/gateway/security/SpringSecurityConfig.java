@@ -76,13 +76,15 @@ public class SpringSecurityConfig {
                 .pathMatchers("/api/core/sync/uploadfile").hasAnyAuthority(RolDto.ADMINISTRADOR.name(), RolDto.DIRECTOR.name())
 
                 //Core - Usuaris
-                .pathMatchers("/api/core/usuaris/profile-by-email").hasAnyAuthority(RolDto.ADMINISTRADOR.name(), RolDto.DIRECTOR.name(), RolDto.CAP_ESTUDIS.name(), RolDto.PROFESSOR.name())
-                .pathMatchers("/api/core/usuaris/profile-by-gestib-codi").hasAnyAuthority(RolDto.ADMINISTRADOR.name(), RolDto.DIRECTOR.name(), RolDto.CAP_ESTUDIS.name(), RolDto.PROFESSOR.name())
+                .pathMatchers("/api/core/usuaris/profile/**").hasAnyAuthority(RolDto.ADMINISTRADOR.name(), RolDto.DIRECTOR.name(), RolDto.CAP_ESTUDIS.name(), RolDto.PROFESSOR.name())
+                .pathMatchers("/api/core/usuaris/profile-by-email/**").hasAnyAuthority(RolDto.ADMINISTRADOR.name(), RolDto.DIRECTOR.name(), RolDto.CAP_ESTUDIS.name(), RolDto.PROFESSOR.name())
+                .pathMatchers("/api/core/usuaris/profile-by-gestib-codi/**").hasAnyAuthority(RolDto.ADMINISTRADOR.name(), RolDto.DIRECTOR.name(), RolDto.CAP_ESTUDIS.name(), RolDto.PROFESSOR.name())
+                .pathMatchers("/api/core/usuaris/tutorfct-by-codigrup/**").hasAnyAuthority(RolDto.ADMINISTRADOR.name(), RolDto.DIRECTOR.name(), RolDto.CAP_ESTUDIS.name(), RolDto.PROFESSOR.name())
                 .pathMatchers("/api/core/usuaris/**").hasAnyAuthority(RolDto.ADMINISTRADOR.name(), RolDto.DIRECTOR.name(), RolDto.CAP_ESTUDIS.name())
                 .pathMatchers("/api/core/usuari/**").hasAnyAuthority(RolDto.ADMINISTRADOR.name(), RolDto.DIRECTOR.name(), RolDto.CAP_ESTUDIS.name())
 
                 //Core - Curs
-                .pathMatchers("/api/core/curs/getByCodiGestib").hasAnyAuthority(RolDto.ADMINISTRADOR.name(), RolDto.DIRECTOR.name(), RolDto.CAP_ESTUDIS.name(), RolDto.PROFESSOR.name())
+                .pathMatchers("/api/core/curs/getByCodiGestib/**").hasAnyAuthority(RolDto.ADMINISTRADOR.name(), RolDto.DIRECTOR.name(), RolDto.CAP_ESTUDIS.name(), RolDto.PROFESSOR.name())
                 .pathMatchers("/api/core/curs/**").hasAnyAuthority(RolDto.ADMINISTRADOR.name(), RolDto.DIRECTOR.name(), RolDto.CAP_ESTUDIS.name())
 
                 //Core - Grups
