@@ -97,6 +97,12 @@ public class SpringSecurityConfig {
                 //Core - Llistats
                 .pathMatchers("/api/core/google/sheets/**").hasAnyAuthority(RolDto.ADMINISTRADOR.name(), RolDto.DIRECTOR.name(), RolDto.CAP_ESTUDIS.name())
 
+                //Core - Buckets
+                .pathMatchers("/api/core/fitxerbucket/**").hasAnyAuthority(RolDto.ADMINISTRADOR_FCT.name(),RolDto.ADMINISTRADOR.name(), RolDto.DIRECTOR.name(), RolDto.CAP_ESTUDIS.name(), RolDto.PROFESSOR.name())
+
+                //Core - Google Storage
+                .pathMatchers("/api/core/googlestorage/generate-signed-url").hasAnyAuthority(RolDto.ADMINISTRADOR_FCT.name(),RolDto.ADMINISTRADOR.name(), RolDto.DIRECTOR.name(), RolDto.CAP_ESTUDIS.name(), RolDto.PROFESSOR.name())
+
                 //Convalidacions - All
                 .pathMatchers("/api/convalidacions/**").hasAnyAuthority(RolDto.ADMINISTRADOR.name(), RolDto.DIRECTOR.name(), RolDto.CAP_ESTUDIS.name())
 
