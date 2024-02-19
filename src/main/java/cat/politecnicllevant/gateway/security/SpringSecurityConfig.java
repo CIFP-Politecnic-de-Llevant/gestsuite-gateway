@@ -110,7 +110,8 @@ public class SpringSecurityConfig {
                 .pathMatchers("/api/sheetparser/**").hasAnyAuthority(RolDto.PROFESSOR.name(), RolDto.ADMINISTRADOR.name())
 
                 //Gestor Documental
-                .pathMatchers("/api/gestordocumental/**").hasAnyAuthority(RolDto.PROFESSOR.name(), RolDto.ADMINISTRADOR.name())
+                .pathMatchers("/api/gestordocumental/admin/**").hasAnyAuthority(RolDto.ADMINISTRADOR_FCT.name(), RolDto.ADMINISTRADOR.name())
+                .pathMatchers("/api/gestordocumental/**").hasAnyAuthority(RolDto.PROFESSOR.name(),RolDto.ADMINISTRADOR_FCT.name(), RolDto.ADMINISTRADOR.name())
 
 
                 .anyExchange().authenticated()
