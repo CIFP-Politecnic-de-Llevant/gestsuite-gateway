@@ -79,8 +79,8 @@ public class SpringSecurityConfig {
                 .pathMatchers("/api/core/usuaris/profile/**").hasAnyAuthority(RolDto.ADMINISTRADOR.name(), RolDto.DIRECTOR.name(), RolDto.CAP_ESTUDIS.name(), RolDto.PROFESSOR.name())
                 .pathMatchers("/api/core/usuaris/profile-by-email/**").hasAnyAuthority(RolDto.ADMINISTRADOR.name(), RolDto.DIRECTOR.name(), RolDto.CAP_ESTUDIS.name(), RolDto.PROFESSOR.name())
                 .pathMatchers("/api/core/usuaris/profile-by-gestib-codi/**").hasAnyAuthority(RolDto.ADMINISTRADOR.name(), RolDto.DIRECTOR.name(), RolDto.CAP_ESTUDIS.name(), RolDto.PROFESSOR.name())
-                .pathMatchers("/api/core/usuaris/tutorfct-by-codigrup/**").hasAnyAuthority(RolDto.ADMINISTRADOR.name(), RolDto.DIRECTOR.name(), RolDto.CAP_ESTUDIS.name(), RolDto.PROFESSOR.name())
-                .pathMatchers("/api/core/usuaris/**").hasAnyAuthority(RolDto.ADMINISTRADOR.name(), RolDto.DIRECTOR.name(), RolDto.CAP_ESTUDIS.name())
+                .pathMatchers("/api/core/usuaris/tutorfct-by-codigrup/**").hasAnyAuthority(RolDto.ADMINISTRADOR_FCT.name(),RolDto.ADMINISTRADOR.name(), RolDto.DIRECTOR.name(), RolDto.CAP_ESTUDIS.name(), RolDto.PROFESSOR.name())
+                .pathMatchers("/api/core/usuaris/**").hasAnyAuthority(RolDto.ADMINISTRADOR_FCT.name(),RolDto.ADMINISTRADOR.name(), RolDto.DIRECTOR.name(), RolDto.CAP_ESTUDIS.name())
                 .pathMatchers("/api/core/usuari/**").hasAnyAuthority(RolDto.ADMINISTRADOR.name(), RolDto.DIRECTOR.name(), RolDto.CAP_ESTUDIS.name())
 
                 //Core - Curs
