@@ -77,13 +77,21 @@ public class SpringSecurityConfig {
 
                 //Core - Usuaris
                 .pathMatchers("/api/core/usuaris/desaRols").hasAnyAuthority(RolDto.ADMINISTRADOR.name())
-                .pathMatchers("/api/core/usuaris/**").hasAnyAuthority(RolDto.ADMINISTRADOR.name(), RolDto.DIRECTOR.name(), RolDto.CAP_ESTUDIS.name())
-                .pathMatchers("/api/core/usuari/**").hasAnyAuthority(RolDto.ADMINISTRADOR.name(), RolDto.DIRECTOR.name(), RolDto.CAP_ESTUDIS.name())
+                .pathMatchers("/api/core/usuaris/profile/**").hasAnyAuthority(RolDto.ADMINISTRADOR.name(), RolDto.DIRECTOR.name(), RolDto.CAP_ESTUDIS.name(), RolDto.PROFESSOR.name())
+                .pathMatchers("/api/core/usuaris/profile-by-email/**").hasAnyAuthority(RolDto.ADMINISTRADOR.name(), RolDto.DIRECTOR.name(), RolDto.CAP_ESTUDIS.name(), RolDto.PROFESSOR.name())
+                .pathMatchers("/api/core/usuaris/profile-by-gestib-codi/**").hasAnyAuthority(RolDto.ADMINISTRADOR.name(), RolDto.DIRECTOR.name(), RolDto.CAP_ESTUDIS.name(), RolDto.PROFESSOR.name())
+                .pathMatchers("/api/core/usuaris/tutorfct-by-codigrup/**").hasAnyAuthority(RolDto.ADMINISTRADOR_FCT.name(),RolDto.ADMINISTRADOR.name(), RolDto.DIRECTOR.name(), RolDto.CAP_ESTUDIS.name(), RolDto.PROFESSOR.name())
+
+                /** TODO: Revisar permisos de usuaris dels professors **/
+                .pathMatchers("/api/core/usuaris/**").hasAnyAuthority(RolDto.ADMINISTRADOR_FCT.name(),RolDto.ADMINISTRADOR.name(), RolDto.DIRECTOR.name(), RolDto.CAP_ESTUDIS.name(), RolDto.PROFESSOR.name())
+                .pathMatchers("/api/core/usuari/**").hasAnyAuthority(RolDto.ADMINISTRADOR.name(), RolDto.DIRECTOR.name(), RolDto.CAP_ESTUDIS.name(), RolDto.PROFESSOR.name())
 
                 //Core - Curs
+                .pathMatchers("/api/core/curs/getByCodiGestib/**").hasAnyAuthority(RolDto.ADMINISTRADOR.name(), RolDto.DIRECTOR.name(), RolDto.CAP_ESTUDIS.name(), RolDto.PROFESSOR.name())
                 .pathMatchers("/api/core/curs/**").hasAnyAuthority(RolDto.ADMINISTRADOR.name(), RolDto.DIRECTOR.name(), RolDto.CAP_ESTUDIS.name())
 
                 //Core - Grups
+                .pathMatchers("/api/core/grup/llistatprofessorat").hasAnyAuthority(RolDto.ADMINISTRADOR.name(), RolDto.DIRECTOR.name(), RolDto.CAP_ESTUDIS.name(), RolDto.PROFESSOR.name())
                 .pathMatchers("/api/core/grup/**").hasAnyAuthority(RolDto.ADMINISTRADOR.name(), RolDto.DIRECTOR.name(), RolDto.CAP_ESTUDIS.name())
 
                 //Core - Departament
@@ -91,6 +99,12 @@ public class SpringSecurityConfig {
 
                 //Core - Llistats
                 .pathMatchers("/api/core/google/sheets/**").hasAnyAuthority(RolDto.ADMINISTRADOR.name(), RolDto.DIRECTOR.name(), RolDto.CAP_ESTUDIS.name())
+
+                //Core - Buckets
+                .pathMatchers("/api/core/fitxerbucket/**").hasAnyAuthority(RolDto.ADMINISTRADOR_FCT.name(),RolDto.ADMINISTRADOR.name(), RolDto.DIRECTOR.name(), RolDto.CAP_ESTUDIS.name(), RolDto.PROFESSOR.name())
+
+                //Core - Google Storage
+                .pathMatchers("/api/core/googlestorage/generate-signed-url").hasAnyAuthority(RolDto.ADMINISTRADOR_FCT.name(),RolDto.ADMINISTRADOR.name(), RolDto.DIRECTOR.name(), RolDto.CAP_ESTUDIS.name(), RolDto.PROFESSOR.name())
 
                 //Convalidacions - All
                 .pathMatchers("/api/convalidacions/**").hasAnyAuthority(RolDto.ADMINISTRADOR.name(), RolDto.DIRECTOR.name(), RolDto.CAP_ESTUDIS.name())
@@ -105,7 +119,8 @@ public class SpringSecurityConfig {
                 .pathMatchers("/api/sheetparser/**").hasAnyAuthority(RolDto.PROFESSOR.name(), RolDto.ADMINISTRADOR.name())
 
                 //Gestor Documental
-                .pathMatchers("/api/gestordocumental/**").permitAll()
+                .pathMatchers("/api/gestordocumental/admin/**").hasAnyAuthority(RolDto.ADMINISTRADOR_FCT.name(), RolDto.ADMINISTRADOR.name())
+                .pathMatchers("/api/gestordocumental/**").hasAnyAuthority(RolDto.PROFESSOR.name(),RolDto.ADMINISTRADOR_FCT.name(), RolDto.ADMINISTRADOR.name())
 
 
                 .anyExchange().authenticated()
