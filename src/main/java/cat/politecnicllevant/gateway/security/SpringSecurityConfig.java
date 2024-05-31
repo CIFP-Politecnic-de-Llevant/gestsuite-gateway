@@ -76,6 +76,7 @@ public class SpringSecurityConfig {
                 .pathMatchers("/api/core/sync/uploadfile").hasAnyAuthority(RolDto.ADMINISTRADOR.name(), RolDto.DIRECTOR.name())
 
                 //Core - Usuaris
+                .pathMatchers("/api/core/usuaris/desaRols").hasAnyAuthority(RolDto.ADMINISTRADOR.name())
                 .pathMatchers("/api/core/usuaris/**").hasAnyAuthority(RolDto.ADMINISTRADOR.name(), RolDto.DIRECTOR.name(), RolDto.CAP_ESTUDIS.name())
                 .pathMatchers("/api/core/usuari/**").hasAnyAuthority(RolDto.ADMINISTRADOR.name(), RolDto.DIRECTOR.name(), RolDto.CAP_ESTUDIS.name())
 
