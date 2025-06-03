@@ -46,8 +46,10 @@ public class SpringSecurityConfig {
                 .pathMatchers("/api/core/actuator/health").permitAll()
                 .pathMatchers("/api/professoratmanager/actuator/health").permitAll()
 
+                //Oauth - Auth
+                .pathMatchers("/api/oauth/auth/login").permitAll()
+
                 //Core - Auth
-                .pathMatchers("/api/core/auth/google/login").permitAll()
                 .pathMatchers("/api/core/auth/profile/rol").permitAll()
                 .pathMatchers("/api/core/public/**").permitAll()
                 .pathMatchers("/api/core/external/gsuite/sendemailattachment").permitAll()
