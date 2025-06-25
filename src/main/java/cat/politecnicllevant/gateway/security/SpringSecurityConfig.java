@@ -203,12 +203,12 @@ public class SpringSecurityConfig {
     @Bean
     CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration configuration = new CorsConfiguration();
+        configuration.applyPermitDefaultValues();
         configuration.setAllowedOrigins(Arrays.asList(this.allowedCors.split(",")));
         configuration.setAllowedMethods(Arrays.asList("GET","POST","PUT","DELETE","OPTIONS"));
         configuration.setAllowedHeaders(Arrays.asList("Content-Type","Authorization"));
         configuration.setMaxAge(3600L);
         configuration.setAllowCredentials(true);
-        configuration.applyPermitDefaultValues();
 
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
         source.registerCorsConfiguration("/**", configuration);
